@@ -1,10 +1,8 @@
 package com.capitole.infrastructure.database.h2.adapter;
 
-import com.capitole.domain.model.Brand;
 import com.capitole.domain.model.Price;
-import com.capitole.domain.model.Product;
 import com.capitole.domain.repository.PriceRepository;
-import com.capitole.infrastructure.database.h2.entity.PriceEntity;
+import com.capitole.infrastructure.database.h2.mapper.PriceEntityMapper;
 import com.capitole.infrastructure.database.h2.repository.PriceJpaRepository;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +13,11 @@ import java.util.Optional;
 public class PriceRepositoryAdapter implements PriceRepository {
 
     private final PriceJpaRepository repository;
+    private final PriceEntityMapper priceMapper;
 
-    public PriceRepositoryAdapter(PriceJpaRepository repository) {
+    public PriceRepositoryAdapter(PriceJpaRepository repository, PriceEntityMapper priceMapper) {
         this.repository = repository;
+        this.priceMapper = priceMapper;
     }
 
     @Override
@@ -25,19 +25,7 @@ public class PriceRepositoryAdapter implements PriceRepository {
         return repository.findApplicablePrices(productId, brandId, date)
                 .stream()
                 .findFirst()
-                .map(this::mapToDomain);
+                .map(priceMapper::toDomain);
     }
 
-    private Price mapToDomain(PriceEntity entity) {
-        return Price.builder()
-                .id(entity.getId())
-                .brand(new Brand(entity.getBrand().getId(), entity.getBrand().getName()))
-                .product(new Product(entity.getProduct().getId(), entity.getProduct().getName()))
-                .startDate(entity.getStartDate())
-                .endDate(entity.getEndDate())
-                .priority(entity.getPriority())
-                .price(entity.getPrice())
-                .curr(entity.getCurr())
-                .build();
-    }
 }
