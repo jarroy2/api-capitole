@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
@@ -18,13 +18,14 @@ public class Price {
 
     private Long id;
     private Brand brand;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private Product product;
     @NotNull
     @Min(value = 0, message = "Price must be positive")
     private BigDecimal price;
     private String curr;
+    private Integer priority;
 
 
 }
