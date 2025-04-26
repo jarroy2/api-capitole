@@ -1,8 +1,19 @@
 package com.capitole.domain.model;
 
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Getter
+@AllArgsConstructor
+@Builder
+@ToString
 public class Price {
 
     private Long id;
@@ -10,6 +21,8 @@ public class Price {
     private Date startDate;
     private Date endDate;
     private Product product;
+    @NotNull
+    @Min(value = 0, message = "Price must be positive")
     private BigDecimal price;
     private String curr;
 
