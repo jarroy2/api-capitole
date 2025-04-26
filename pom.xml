@@ -23,7 +23,7 @@
         <version.lombok>1.18.24</version.lombok>
         <version.mapstruct> 1.5.5.Final</version.mapstruct>
         <version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
-        <version.springdoc>2.5.0</version.springdoc>
+        <version.springdoc>2.7.0</version.springdoc>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -79,6 +79,7 @@
             <version>${version.mapstruct-lombok}</version>
         </dependency>
 
+        <!-- Swagger / OpenAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>

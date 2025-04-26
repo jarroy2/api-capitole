@@ -9,23 +9,37 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Adapter implementation of PriceRepository using an H2 database.
+ *
+ * Interacts with the database layer to retrieve price entities and map them into domain models.
+ */
 @Component
 public class PriceRepositoryAdapter implements PriceRepository {
 
     private final PriceJpaRepository repository;
-    private final PriceEntityMapper priceMapper;
+    private final PriceEntityMapper priceEntityMapper;
 
-    public PriceRepositoryAdapter(PriceJpaRepository repository, PriceEntityMapper priceMapper) {
+    /**
+     * Constructor for injecting dependencies.
+     *
+     * @param repository JPA repository for price entities
+     * @param priceEntityMapper Mapper for converting entities to domain models
+     */
+    public PriceRepositoryAdapter(PriceJpaRepository repository, PriceEntityMapper priceEntityMapper) {
         this.repository = repository;
-        this.priceMapper = priceMapper;
+        this.priceEntityMapper = priceEntityMapper;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<Price> findApplicablePrice(Long productId, Long brandId, LocalDateTime date) {
         return repository.findApplicablePrices(productId, brandId, date)
                 .stream()
                 .findFirst()
-                .map(priceMapper::toDomain);
+                .map(priceEntityMapper::toDomain);
     }
 
 }

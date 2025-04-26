@@ -6,6 +6,11 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+/**
+ * Mapper for converting PriceDto objects to domain Price models and vice versa.
+ *
+ * Helps maintain separation between infrastructure and domain layers.
+ */
 @Mapper(componentModel = "spring")
 public interface PriceDtoMapper {
 
