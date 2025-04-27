@@ -42,4 +42,6 @@ public class PriceRepositoryAdapter implements PriceRepository {
                 .map(priceEntityMapper::toDomain);
     }
 
+
+
 }

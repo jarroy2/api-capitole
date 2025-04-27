@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: capitole-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: capitole_db
+      MYSQL_USER: capitole_user
+      MYSQL_PASSWORD: capitole_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ../src/main/resources/schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ../src/main/resources/data.sql:/docker-entrypoint-initdb.d/2_data.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+
+  api-capitole:
+    build:
+      context: ../
+      dockerfile: environment/Dockerfile
+    container_name: api-capitole
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/capitole_db
+      - SPRING_DATASOURCE_USERNAME=capitole_user
+      - SPRING_DATASOURCE_PASSWORD=capitole_pass
+      - SPRING_PROFILES_ACTIVE=prod
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  db_data:

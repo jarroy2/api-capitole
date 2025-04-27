@@ -24,7 +24,7 @@
         <version.mapstruct> 1.5.5.Final</version.mapstruct>
         <version.mapstruct-lombok>0.2.0</version.mapstruct-lombok>
         <version.springdoc>2.7.0</version.springdoc>
-
+        <version.mysql>8.0.23</version.mysql>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -86,6 +86,13 @@
             <version>${version.springdoc}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${version.mysql}</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -94,7 +101,29 @@
         </dependency>
 
     </dependencies>
-
+    <profiles>
+        <profile>
+            <id>prod</id>
+            <dependencies>
+                <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                    <version>${version.mysql}</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <excludes>
+                            <exclude>**/*.sql</exclude>
+                        </excludes>
+                    </resource>
+                </resources>
+            </build>
+        </profile>
+    </profiles>
     <build>
         <plugins>
             <plugin>

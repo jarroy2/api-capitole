@@ -1,8 +1,8 @@
 package com.capitole.infrastructure.rest.controller;
 
-import com.capitole.application.service.IPriceService;
-import com.capitole.common.PriceDto;
+import com.capitole.application.port.in.IPriceService;
 import com.capitole.infrastructure.exception.ErrorResponse;
+import com.capitole.infrastructure.rest.dto.response.PriceDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

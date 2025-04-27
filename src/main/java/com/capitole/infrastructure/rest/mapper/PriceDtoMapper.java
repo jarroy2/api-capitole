@@ -1,6 +1,6 @@
 package com.capitole.infrastructure.rest.mapper;
 
-import com.capitole.common.PriceDto;
+import com.capitole.infrastructure.rest.dto.response.PriceDto;
 import com.capitole.domain.model.Price;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

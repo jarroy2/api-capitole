@@ -1,9 +1,10 @@
 package com.capitole.application.service;
 
-import com.capitole.common.PriceDto;
+import com.capitole.application.port.in.IPriceService;
 import com.capitole.domain.model.Price;
 import com.capitole.domain.repository.PriceRepository;
 import com.capitole.infrastructure.exception.ResourceNotFoundException;
+import com.capitole.infrastructure.rest.dto.response.PriceDto;
 import com.capitole.infrastructure.rest.mapper.PriceDtoMapper;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
  * Uses domain repositories and mappers to retrieve and map price information.
  */
 @Service
-public class PriceServiceImpl implements IPriceService{
+public class PriceServiceImpl implements IPriceService {
 
     private final PriceRepository priceRepository;
     private final PriceDtoMapper priceDtoMapper;

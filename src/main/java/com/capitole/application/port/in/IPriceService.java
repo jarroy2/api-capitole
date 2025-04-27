@@ -1,7 +1,8 @@
-package com.capitole.application.service;
+package com.capitole.application.port.in;
 
-import com.capitole.common.PriceDto;
+
 import com.capitole.infrastructure.exception.ResourceNotFoundException;
+import com.capitole.infrastructure.rest.dto.response.PriceDto;
 
 import java.time.LocalDateTime;
 

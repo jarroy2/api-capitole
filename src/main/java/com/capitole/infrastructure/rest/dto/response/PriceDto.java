@@ -1,10 +1,8 @@
-package com.capitole.common;
+package com.capitole.infrastructure.rest.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
