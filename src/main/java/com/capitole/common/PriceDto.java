@@ -14,9 +14,7 @@ import java.time.LocalDateTime;
  *
  * Contains the necessary fields to respond to client requests.
  */
-@EqualsAndHashCode
 @Getter
-@Setter
 @AllArgsConstructor
 @Schema(description = "DTO representing detailed price information.")
 public class PriceDto {

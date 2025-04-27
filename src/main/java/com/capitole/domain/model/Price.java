@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 @Builder
-@ToString
 public class Price {
 
     private Long id;
