@@ -1,8 +1,11 @@
 package com.capitole.infrastructure.rest.controller;
 
 import com.capitole.application.port.in.IPriceService;
+import com.capitole.domain.model.Price;
 import com.capitole.infrastructure.exception.ErrorResponse;
 import com.capitole.infrastructure.rest.dto.response.PriceDto;
+import com.capitole.infrastructure.rest.mapper.PriceDtoMapper;
+import com.capitole.infrastructure.rest.service.PriceQueryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,17 +33,17 @@ import java.time.LocalDateTime;
 @Tag(name = "Price API", description = "Operations related to product pricing")
 public class PriceRestController {
 
-    private final IPriceService priceService;
+    private final PriceQueryService priceQueryService;
+
 
     /**
      * Constructor for injecting the PriceService.
      *
-     * @param priceService Service handling business logic for prices
+     * @param priceQueryService Service handling business logic for prices
      */
-    public PriceRestController(IPriceService priceService) {
-        this.priceService = priceService;
+    public PriceRestController(PriceQueryService priceQueryService) {
+        this.priceQueryService = priceQueryService;
     }
-
 
     /**
      * REST controller endpoint to retrieve the applicable price for a specific product, brand, and date.
@@ -74,7 +77,7 @@ public class PriceRestController {
                                           @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
 
         log.info("Fetching price for productId={}, brandId={}, date={}", productId, brandId, date);
-        return ResponseEntity.ok(priceService.getApplicablePrice(productId, brandId, date));
+        return ResponseEntity.ok(priceQueryService.getApplicablePrice(productId, brandId, date));
     }
 
 }

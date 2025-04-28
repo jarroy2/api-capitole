@@ -30,6 +30,7 @@ public class MainTest {
                         .param("brandId", "1")
                         .param("date", "2020-06-14T10:00:00"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.finalPrice", is(35.50)))
                 .andExpect(jsonPath("$.productId", is(35455)))
                 .andExpect(jsonPath("$.brandId", is(1)));
     }
@@ -42,6 +43,7 @@ public class MainTest {
                         .param("brandId", "1")
                         .param("date", "2020-06-14T16:00:00"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.finalPrice", is(25.45)))
                 .andExpect(jsonPath("$.productId", is(35455)))
                 .andExpect(jsonPath("$.brandId", is(1)));
     }
@@ -54,6 +56,7 @@ public class MainTest {
                         .param("brandId", "1")
                         .param("date", "2020-06-14T21:00:00"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.finalPrice", is(35.50)))
                 .andExpect(jsonPath("$.productId", is(35455)))
                 .andExpect(jsonPath("$.brandId", is(1)));
     }
@@ -66,6 +69,7 @@ public class MainTest {
                         .param("brandId", "1")
                         .param("date", "2020-06-15T10:00:00"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.finalPrice", is(30.5)))
                 .andExpect(jsonPath("$.productId", is(35455)))
                 .andExpect(jsonPath("$.brandId", is(1)));
     }
@@ -78,6 +82,7 @@ public class MainTest {
                         .param("brandId", "1")
                         .param("date", "2020-06-16T21:00:00"))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.finalPrice", is(38.95)))
                 .andExpect(jsonPath("$.productId", is(35455)))
                 .andExpect(jsonPath("$.brandId", is(1)));
     }

@@ -1,8 +1,9 @@
 package com.capitole.application.port.in;
 
 
+import com.capitole.domain.model.Price;
 import com.capitole.infrastructure.exception.ResourceNotFoundException;
-import com.capitole.infrastructure.rest.dto.response.PriceDto;
+import java.util.Optional;
 
 import java.time.LocalDateTime;
 
@@ -23,6 +24,6 @@ public interface IPriceService {
      * @return the PriceDto representing the applicable price
      * @throws ResourceNotFoundException if no applicable price is found
      */
-    PriceDto getApplicablePrice(Long productId, Long brandId, LocalDateTime date);
+    Price getApplicablePrice(Long productId, Long brandId, LocalDateTime date);
 
 }
